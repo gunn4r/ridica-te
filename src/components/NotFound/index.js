@@ -85,9 +85,9 @@ const NotFound = ({ classes: { wrapper, bhImg, showmetext, text, showmeimg, show
   <div className={wrapper}>
     <img src={blackhole} alt="Are you lost??" className={bhImg} />
     <Typography className={text} align="center">
-      ARE YOU LOST???<br />
-      <span className={showmetext}>SHOW ME WHAT YOU GOT!!! <Link to="/" className={showmelink}>DISQUALIFIED!!!</Link></span>
-      <img src={cromulon} alt="SHOW ME WHAT YOU GOTT!!!!" className={showmeimg} />
+      ARE YOU LOST?<br />
+      <span className={showmetext}>SHOW ME WHAT YOU GOT! <Link to="/" className={showmelink}>DISQUALIFIED!!!</Link></span>
+      <img src={cromulon} alt="SHOW ME WHAT YOU GOT!" className={showmeimg} />
     </Typography>
   </div>
 )
