@@ -15,6 +15,8 @@ const styles = (theme) => ({
     backgroundSize: 'cover',
     flex: 1,
     color: theme.palette.common.white,
+    display: 'flex',
+    flexDirection: 'column',
   },
   quoteBox: {
     padding: theme.spacing.unit * 8,
@@ -26,15 +28,18 @@ const styles = (theme) => ({
     lineHeight: 1.75,
     fontSize: '2rem',
     fontWeight: 'bold',
+    flex: 1,
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing.unit * 4,
+      marginTop: theme.spacing.unit * 10,
+      marginBottom: theme.spacing.unit * 10,
+      marginLeft: 0,
+    },
   },
   disclaimer: {
     padding: theme.spacing.unit,
     backgroundColor: 'rgba(0,0,0,.5)',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
     fontSize: '.8rem',
-    width: '100%',
     opacity: 0.5,
   },
   link: {
