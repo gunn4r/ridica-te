@@ -37,7 +37,6 @@ export function* handleFirebaseAuthentication() {
         parsedUser.creationTime = get(user, 'metadata.creationTime')
         yield put(syncUserData(parsedUser))
       } else {
-        console.log('NO USER FOUND', user)
         yield put(syncUserData(null))
       }
     } catch (err) {

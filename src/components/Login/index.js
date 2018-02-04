@@ -9,7 +9,6 @@ import Loader from '../common/Loader'
 
 const styles = (theme) => ({
   wrapper: {
-    backgroundImage: 'url("https://source.unsplash.com/random/3840x2160")',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center',
     backgroundSize: 'cover',
@@ -22,7 +21,6 @@ const styles = (theme) => ({
     padding: theme.spacing.unit * 8,
     marginTop: theme.spacing.unit * 20,
     marginLeft: theme.spacing.unit * 10,
-    display: 'inline-block',
     maxWidth: 700,
     textShadow: '2px 2px 10px rgba(0,0,0,.7)',
     lineHeight: 1.75,
@@ -30,10 +28,13 @@ const styles = (theme) => ({
     fontWeight: 'bold',
     flex: 1,
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing.unit * 4,
-      marginTop: theme.spacing.unit * 10,
-      marginBottom: theme.spacing.unit * 10,
+      padding: theme.spacing.unit * 3,
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
       marginLeft: 0,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
     },
   },
   disclaimer: {
