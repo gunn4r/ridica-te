@@ -5,7 +5,7 @@ import { map } from 'lodash'
 
 export const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => {
   const RenderComponent = (props) => (isLoggedIn ?
-    <Component {...props} /> :
+    <Component isLoggedIn={isLoggedIn} {...props} /> :
     <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
   )
 
@@ -17,7 +17,11 @@ export const PrivateRoute = ({ component: Component, isLoggedIn, ...rest }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool,
+}
+
+PrivateRoute.defaultProps = {
+  isLoggedIn: false,
 }
 
 
@@ -35,19 +39,20 @@ const renderRoutes = ({ routes, isLoggedIn }) => map(routes, (route, index) => {
     <Route
       exact={route.exact}
       path={route.path}
-      render={(props) => (<Component {...props} />)}
+      render={(props) => (<Component isLoggedIn={isLoggedIn} {...props} />)}
       key={index}
     />
 })
 
 renderRoutes.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool,
   routes: PropTypes.array,
 }
 
 renderRoutes.defaultProps = {
   routes: [],
   notFound: null,
+  isLoggedIn: false,
 }
 
 export default renderRoutes

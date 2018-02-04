@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import AppHeader from './AppHeader'
 import renderRoutes from './Routes'
 import routes from '../../routes'
+import Loader from './Loader'
 
 // import florinRidicate from '../../assets/audio/florin-ridicate.wav'
 
@@ -37,7 +38,16 @@ class AppWrapper extends React.PureComponent {
   render() {
     const { auth: { isLoading, isLoggedIn }, classes } = this.props
 
-    if (isLoading) return <div>Loading</div>
+    if (isLoading) {
+      return (
+        <React.Fragment>
+          <Reboot />
+          <div className={classes.appWrapper}>
+            <Loader />
+          </div>
+        </React.Fragment>
+      )
+    }
 
     return (
       <React.Fragment>
