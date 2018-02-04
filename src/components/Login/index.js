@@ -68,7 +68,7 @@ class Login extends React.Component {
             {this.state.quote.quote} <br /><em>-{this.state.quote.author}</em>
           </Typography>
           <Typography type="caption" color="inherit" align="center" className={classes.disclaimer}>
-            Quotes and images are entirely random. Quotes are courtesy <a href="https://talaikis.com/" target="_blank" className={classes.link} rel="noopener noreferrer">https://talaikis.com/</a>. Images are courtsey <a href="http://unsplash.com" target="_blank" className={classes.link} rel="noopener noreferrer">http://unsplash.com</a>.
+            Quotes and images are entirely random. Quotes are courtesy <a href="https://talaikis.com/random_quotes_api/" target="_blank" className={classes.link} rel="noopener noreferrer">https://talaikis.com/random_quotes_api/</a>. Images are courtsey <a href="http://unsplash.com" target="_blank" className={classes.link} rel="noopener noreferrer">http://unsplash.com</a>.
           </Typography>
         </div>
       </Fade>
