@@ -1,6 +1,7 @@
 import Login from './components/Login'
 import Standup from './components/Standup'
 import Profile from './components/Profile'
+import NotFound from './components/NotFound'
 
 const routes = [
   {
@@ -21,6 +22,9 @@ const routes = [
     label: 'Profile',
     isPrivate: true,
   },
+  {
+    component: NotFound,
+  }
 ]
 
 export default routes

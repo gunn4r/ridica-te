@@ -1,21 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { withStyles } from 'material-ui/styles'
 import Reboot from 'material-ui/Reboot'
-// import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
-import GlobalHeader from './GlobalHeader'
-// import LoadingOverlay from './LoadingOverlay'
-import Standup from '../Standup'
-import Login from '../Login'
-import Routes from './Routes'
+import AppHeader from './AppHeader'
+import renderRoutes from './Routes'
 import routes from '../../routes'
 
-import florinRidicate from '../../assets/audio/florin-ridicate.wav'
+// import florinRidicate from '../../assets/audio/florin-ridicate.wav'
+
+const styles = {
+  appWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100%',
+  },
+}
 
 class AppWrapper extends React.PureComponent {
-  
   componentDidMount() {
     // const msg = new window.SpeechSynthesisUtterance();
     // const voices = window.speechSynthesis.getVoices();
@@ -28,41 +32,37 @@ class AppWrapper extends React.PureComponent {
     //   //window.speechSynthesis.speak(msg);
     //   this.audioElm.play()
     // }, 1000)
-
   }
 
   render() {
-    const { isLoading } = this.props
+    const { auth: { isLoading, isLoggedIn }, classes } = this.props
 
-    // if (isLoading) return <div>Loading</div> //<LoadingOverlay />
+    if (isLoading) return <div>Loading</div>
 
-    // return (
-    //   <Router>
-    //     <div>
-    //       <Routes routes={routes} isLoggedIn={isLoggedIn} />
-    //     </div>
-    //   </Router>
-    // )
-    return(
+    return (
       <React.Fragment>
         <Reboot />
-        <GlobalHeader />
-        <Standup />
-        <Login />
+        <Router>
+          <div className={classes.appWrapper}>
+            <AppHeader auth={this.props.auth} />
+            <Switch>
+              {renderRoutes({ routes, isLoggedIn })}
+            </Switch>
+          </div>
+        </Router>
       </React.Fragment>
     )
   }
 }
 
 AppWrapper.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  auth: PropTypes.object,
+  classes: PropTypes.object.isRequired,
 }
 
 AppWrapper.defaultProps = {
-  name: null,
-  picture: null,
+  auth: null,
 }
 
-const mapStateToProps = ({ auth: { isLoading, isLoggedIn } }) => ({ isLoading, isLoggedIn })
-
-export default connect(mapStateToProps)(AppWrapper)
+const mapStateToProps = ({ auth }) => ({ auth })
+export default connect(mapStateToProps)(withStyles(styles)(AppWrapper))

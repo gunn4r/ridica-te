@@ -1,23 +1,45 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { loginFirebaseRequest } from '../../auth/actions'
+import axios from 'axios'
+import { withStyles } from 'material-ui/styles'
+import { Fade } from 'material-ui/transitions'
 
-class Login extends React.PureComponent {
-    render() {
-        return (
-            <div>
-                <button onClick={this.props.loginFirebaseRequest}>Login to Google Yo</button>
-            </div>
-        )
-    }
+const styles = {
+  wrapper: {
+    backgroundImage: 'url("https://source.unsplash.com/random/1920x1080")',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center center',
+    backgroundSize: 'cover',
+    flex: 1,
+  },
+}
+
+class Login extends React.Component {
+  state = { quote: null }
+  async componentDidMount() {
+    const { data: quote } = await axios.get('https://talaikis.com/api/quotes/random/')
+    this.setState({ quote })
+  }
+
+  render() {
+    const { classes } = this.props
+    return (
+      <div className={classes.wrapper}>
+        {this.state.quote &&
+        <Fade in timeout={2000}>
+          <div>
+            {this.state.quote.quote} - {this.state.quote.author}
+          </div>
+        </Fade>
+        }
+      </div>
+    )
+  }
 }
 
 Login.propTypes = {
-    loginFirebaseRequest: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 }
 
-// const mapStateToProps = ({ auth: { isLoading, isLoggedIn } }) => ({ isLoading, isLoggedIn })
-const mapDispatchToProps = (dispatch) => bindActionCreators({ loginFirebaseRequest }, dispatch)
-export default connect(null, mapDispatchToProps)(Login)
+
+export default withStyles(styles)(Login)

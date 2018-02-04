@@ -5,10 +5,15 @@ const initialState = {
   permissions: [],
   firebasePath: null,
   firebaseRef: null,
-  idToken: null,
-  name: null,
-  picture: null,
+  displayName: null,
   email: null,
+  emailVerified: null,
+  isAnonymous: null,
+  lastSignInTime: null,
+  creationTime: null,
+  phoneNumber: null,
+  photoURL: null,
+  uid: null,
 }
 
 export default function authReducer(state = initialState, action = {}) {
@@ -26,7 +31,7 @@ export default function authReducer(state = initialState, action = {}) {
 
     case types.FIREBASE.LOGOUT.COMPLETE:
       return {
-        ...state,
+        ...initialState,
         isLoading: false,
       }
 

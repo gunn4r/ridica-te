@@ -1,0 +1,10 @@
+# all node_modules directories
+**/node_modules/*
+
+# ignore build/dist stuff
+**/build/*
+**/dist/*
+
+# ignore minified
+**/*.min.js
+**/*.min.css
